@@ -1,6 +1,8 @@
 # BALL IS LIFE
 
 
+![WireFrame](./assets/Ball-is-life-wireframe.JPG)
+
 ###Introduction
 
 This will be a simple game where the player will be a ball. The ball will have one function of bouncing up and down. The reason for this action is clear hurdles that come towards the player. 
