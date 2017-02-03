@@ -3,6 +3,10 @@
 
 ![WireFrame](./assets/Ball-is-life-wireframe.JPG)
 
+Trello Link:
+https://trello.com/b/iO4Hz6rx/project-1-ball-is-life
+
+
 ###Introduction
 
 This will be a simple game where the player will be a ball. The ball will have one function of bouncing up and down. The reason for this action is to clear hurdles that come towards the player. 
