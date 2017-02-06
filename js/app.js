@@ -4,7 +4,7 @@ console.log('connected')
 ///////////////////
 var gamePiece
 var obstacles = []
-var myScore
+var scoreText
 
 
 //WELCOME PAGE//
@@ -29,23 +29,60 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 //canvas algorithms
 ////gravity, objects, timers, live score
 function draw() {
-  var canvas = document.getElementById('canvasScreen')
+  var canvas = document.getElementById('canvasScreen');
+  var raf;
   if (canvas.getContext){
     var ctx = canvas.getContext('2d')
     ctx.beginPath();
-    ctx.fillStyle = 'orange'
-    ctx.arc(100, 250, 30, 0, Math.PI * 2, true);
-    //use moveTo() method later to draw ball lines?
-    ctx.fill();
   }
   function scoreText(){
-  ctx.font = '20px Ariel serif';
-  ctx.fillStyle = 'Black';
-  ctx.fillText('Score: ', 475, 30);
+    ctx.font = '20px Ariel serif';
+    ctx.fillStyle = 'Black';
+    ctx.fillText('Score: ', 475, 30);
+  }
+  var ball = {
+  x: 100,
+  y: 250,
+  vx: 0,
+  vy: -4,
+  radius: 30,
+  color: 'orange',
+  draw: function() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
 }
-scoreText();
 
+function draw() {
+  ctx.clearRect(0,0, canvas.width, canvas.height);
+  ball.draw();
+  ball.x += ball.vx;
+  ball.y += ball.vy;
+  raf = window.requestAnimationFrame(draw);
+  if (ball.y + ball.vy > canvas.height || ball.y + ball.vy < 0) {
+    ball.vy = -ball.vy
+  }
+  if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
+    ball.vx = -ball.vx;
+  }
 }
+
+canvas.addEventListener('mouseover', function(e) {
+  raf = window.requestAnimationFrame(draw);
+});
+
+canvas.addEventListener('mouseout', function(e) {
+  window.cancelAnimationFrame(raf);
+});
+
+ball.draw();
+scoreText();
+}
+
+
 
 // background colors?
 // function canvasGradient() {
