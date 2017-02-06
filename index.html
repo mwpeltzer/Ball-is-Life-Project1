@@ -9,18 +9,39 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body onload="draw();">
 <!--create div for the title  -->
-
+<div id="title">
+  <h1>BALL IS LIFE</h1>
+</div>
 <!-- create a div that will encompass the home page -->
 <!-- create div for the directions -->
 <!-- create a div for name input -->
 <!-- creat a div for the button to begin -->
+<div id="home-page-container" class="home-page">
+  <div id="home-page-directions" class="home-page"></div>
+  <div id="home-page-name-form" class="home-page">
+      <input type="text" placeholder="Name">
+      <div id="home-page-begin-button" class="home-page">
+        <!-- <input type="button" value="BEGIN"> -->
+        <button type="button" name="button" class="home-page">BEGIN</button>
+      </div>
+  </div>
+
+</div>
 
 <!-- create div for gameplay page -->
+<div class="gameplay-page">
+  <div id="game-area">
+    <canvas id="canvasScreen" width="600" height="400"></canvas>
+  </div>
+</div>
 <!-- create a div for the recent scores box -->
-<!-- create a div that will list current live score -->
-<!-- create canvas tag here? -->
+<div id="score-box-container">
+  <div id="scores"></div>
+</div>
+
+
 
 <!-- create a div for "loser" title -->
 <!-- create a div that will list your recent score -->
