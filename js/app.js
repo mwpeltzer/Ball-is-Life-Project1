@@ -28,11 +28,12 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 ////////////////
 //canvas algorithms
 ////gravity, objects, timers, live score
+var canvas = document.getElementById('canvasScreen');
+var ctx = canvas.getContext('2d')
+
 function draw() {
-  var canvas = document.getElementById('canvasScreen');
-  var raf;
+  var gravity = .1;
   if (canvas.getContext){
-    var ctx = canvas.getContext('2d')
     ctx.beginPath();
   }
   function scoreText(){
