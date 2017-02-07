@@ -36,12 +36,6 @@ var obstacle = {
   obstaclevx: 3,
   obstaclevy: 0,
   obstacleColor: 'blue',
-  drawObstacle: function() {
-    ctx.beginPath();
-    ctx.fillRect(540, 280, this.obstaclex, this.obstacley);
-    ctx.fillStyle = this.obstacleColor;
-    ctx.fill();
-  }
 }
 
 var ball = {
@@ -51,52 +45,77 @@ var ball = {
   ballvy: -5,
   ballRadius: 30,
   ballColor: 'orange',
-  drawBall: function() {
-    ctx.beginPath();
-    ctx.arc(this.ballx, this.bally, this.ballRadius, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fillStyle = this.ballColor;
-    ctx.fill();
-  }
 }
 
 var terrain = {
   terrainx: 600,
   terrainy: 330,
   terrainColor: '#0000ff',
-  drawTerrain: function() {
-    ctx.beginPath();
-    ctx.fillRect(0, 330, this.terrainx, this.terrainy);
-    ctx.closePath();
-    ctx.fillStyle = 'this.terrainColor;'
-    ctx.fill();
-    }
+}
+
+function drawObstacle() {
+  ctx.beginPath();
+  ctx.fillRect(540, 280, obstacle.obstaclex, obstacle.obstacley);
+  ctx.fillStyle = obstacle.obstacleColor;
+  ctx.fill();
 }
 
 function drawBall() {
-  if (ball) {
+    ctx.beginPath();
+    ctx.arc(ball.ballx, ball.bally, ball.ballRadius, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fillStyle = ball.ballColor;
+    ctx.fill();
+  }
 
+function drawTerrain() {
+  ctx.beginPath();
+  ctx.fillRect(0, 330, terrain.terrainx, terrain.terrainy);
+  ctx.closePath();
+  ctx.fillStyle = terrain.terrainColor;
+  ctx.fill();
+}
+
+function ballJump() {
+  if (ball.bally + ball.ballvy > 300 || ball.bally + ball.ballvy < 175) {
+    ball.ballvy = -ball.ballvy
+  }
+  ball.bally += ball.ballvy;
+}
+
+function keyDownHandler(e) {
+  if (e.keyCode == 32) {
+    spacebar = true
   }
 }
 
+function keyUpHandler(e) {
+  if (e.keyCode == 32) {
+    spacebar = false
+  }
+}
+
+var spacebar = false
 
 function draw() {
   if (canvas.getContext){
     ctx.beginPath();
     ctx.clearRect(0,0, canvas.width, canvas.height);
-    terrain.drawTerrain();
-    ball.drawBall();
-    obstacle.drawObstacle();
+    drawTerrain();
+    drawBall();
+    drawObstacle();
+    if (spacebar) {
+      ballJump()
+      spacebar = false
+    }
 
-    // ball.bally += ball.ballvy; // this makes the ball move
+//get the draw function to completely animate the balljump as long as it's within it's limits
+
     // obstacle.obstaclex += obstacle.obstaclevx;
 
-    if (obstacle.obstaclex + obstacle.obstaclevx > 250 || obstacle.obstaclex + obstacle.obstaclevx < 30) {
-      obstacle.obstaclevx = -obstacle.obstaclevx
-    }
-    if (ball.bally + ball.ballvy > 300 || ball.bally + ball.ballvy < 175) {
-      ball.ballvy = -ball.ballvy
-    }
+    // if (obstacle.obstaclex + obstacle.obstaclevx > 250 || obstacle.obstaclex + obstacle.obstaclevx < 30) {
+    //   obstacle.obstaclevx = -obstacle.obstaclevx
+    // }
   score++
   raf = window.requestAnimationFrame(draw);
   }
@@ -109,7 +128,8 @@ function scoreText(){
   ctx.fillText('Score: ' + score, 475, 30);
 }
 
-
+$(document).keydown(keyDownHandler)
+$(document).keyup(keyUpHandler)
 //JUMP CODE?//
 /////////////
 
