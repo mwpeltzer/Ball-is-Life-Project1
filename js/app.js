@@ -2,9 +2,7 @@ console.log('connected')
 
 //GLOBAL VARIABLES//
 ///////////////////
-var gamePiece
-var obstacles = []
-var scoreText
+
 
 
 //WELCOME PAGE//
@@ -29,58 +27,63 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 //canvas algorithms
 ////gravity, objects, timers, live score
 var canvas = document.getElementById('canvasScreen');
-var ctx = canvas.getContext('2d')
+var ctx = canvas.getContext('2d');
+var score = 0;
 
-function draw() {
-  var gravity = .1;
-  if (canvas.getContext){
-    ctx.beginPath();
+var ball = {
+ballx: 100,
+bally: 300,
+ballvx: 0,
+ballvy: -4,
+ballRadius: 30,
+ballColor: 'orange',
+draw: function() {
+  ctx.beginPath();
+  ctx.arc(this.ballx, this.bally, this.ballRadius, 0, Math.PI * 2, true);
+  ctx.closePath();
+  ctx.fillStyle = this.ballColor;
+  ctx.fill();
   }
-  function scoreText(){
-    ctx.font = '20px Ariel serif';
-    ctx.fillStyle = 'Black';
-    ctx.fillText('Score: ', 475, 30);
-  }
-  var ball = {
-  x: 100,
-  y: 250,
-  vx: 0,
-  vy: -4,
-  radius: 30,
-  color: 'orange',
+}
+
+var terrain = {
+  terrainx: 600,
+  terrainy: 330,
+  terrainColor: '0000ff',
   draw: function() {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+    ctx.fillRect(0, 330, this.terrainx, this.terrainy);
     ctx.closePath();
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = this.terrainColor;
     ctx.fill();
-  }
+    }
 }
 
 function draw() {
-  ctx.clearRect(0,0, canvas.width, canvas.height);
-  ball.draw();
-  ball.x += ball.vx;
-  ball.y += ball.vy;
+  if (canvas.getContext){
+    ctx.beginPath();
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    terrain.draw();
+    ball.draw();
+    // ball.bally += ball.ballvy; // this makes the ball bounce
+
+    if (ball.bally + ball.ballvy > 300 || ball.bally + ball.ballvy < 30) {
+      ball.ballvy = -ball.ballvy
+    }
+  score++
+
+// $('canvas').on('keydown', function(e) {
+//   if (e.keycode == 32)
   raf = window.requestAnimationFrame(draw);
-  if (ball.y + ball.vy > canvas.height || ball.y + ball.vy < 0) {
-    ball.vy = -ball.vy
+//   });
   }
-  if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-    ball.vx = -ball.vx;
-  }
+scoreText();
 }
 
-canvas.addEventListener('mouseover', function(e) {
-  raf = window.requestAnimationFrame(draw);
-});
-
-canvas.addEventListener('mouseout', function(e) {
-  window.cancelAnimationFrame(raf);
-});
-
-ball.draw();
-scoreText();
+function scoreText(){
+  ctx.font = '20px Ariel serif';
+  ctx.fillStyle = 'Black';
+  ctx.fillText('Score: ' + score, 475, 30);
 }
 
 
