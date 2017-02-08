@@ -78,7 +78,10 @@ function drawTerrain() {
 }
 
 function ballJump() {
-  if (ball.bally + ball.ballvy > 300 || ball.bally + ball.ballvy < 175) {
+  if (ball.bally + ball.ballvy > 305) {
+    ball.ballvy = -ball.ballvy
+    spacebar = false
+  } else if (ball.bally + ball.ballvy < 175) {
     ball.ballvy = -ball.ballvy
   }
   ball.bally += ball.ballvy;
@@ -90,11 +93,11 @@ function keyDownHandler(e) {
   }
 }
 
-function keyUpHandler(e) {
-  if (e.keyCode == 32) {
-    spacebar = false
-  }
-}
+// function keyUpHandler(e) {
+//   if (e.keyCode == 32) {
+//     spacebar = false
+//   }
+// }
 
 function draw() {
   if (canvas.getContext){
@@ -129,7 +132,6 @@ function scoreText(){
 }
 
 $(document).keydown(keyDownHandler)
-$(document).keyup(keyUpHandler)
 //JUMP CODE?//
 /////////////
 
