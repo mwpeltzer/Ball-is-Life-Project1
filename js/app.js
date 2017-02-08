@@ -15,22 +15,22 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 
 //GAMEPLAY PAGE//
 ////////////////
+
 var canvas = document.getElementById('canvasScreen');
 var ctx = canvas.getContext('2d');
 var score = 0;
 var spacebar = false;
-var myObstacles = [];
 
 var obstacle = {
   obstaclex: 650,
   obstacley: 290,
-  obstaclevx: 4,
+  obstaclevx: 5,
   obstaclevy: 0,
   obstaclew: 40,
   obstacleh: 40,
-  obstacleColor: 'red'
+  obstacleColor: 'red',
+  obstacleStart: true
 }
-
 
 var ball = {
   ballx: 100,
@@ -38,7 +38,7 @@ var ball = {
   ballvx: 0,
   ballvy: -5,
   ballRadius: 30,
-  ballColor:'orange'
+  ballColor: 'orange'
 }
 
 var terrain = {
@@ -48,19 +48,21 @@ var terrain = {
 }
 
 function drawObstacle() {
+  if (obstacle.obstacleStart){
   ctx.beginPath();
   ctx.fillRect(obstacle.obstaclex, obstacle.obstacley, obstacle.obstaclew, obstacle.obstacleh);
   ctx.fillStyle = obstacle.obstacleColor;
   ctx.fill();
   }
+}
 
 function drawBall() {
-    ctx.beginPath();
-    ctx.arc(ball.ballx, ball.bally, ball.ballRadius, 0, Math.PI * 2, true);
-    ctx.fillStyle = ball.ballColor;
-    ctx.closePath();
-    ctx.fill();
-  }
+  ctx.beginPath();
+  ctx.arc(ball.ballx, ball.bally, ball.ballRadius, 0, Math.PI * 2, true);
+  ctx.fillStyle = ball.ballColor;
+  ctx.closePath();
+  ctx.fill();
+}
 
 function drawTerrain() {
   ctx.beginPath();
@@ -92,44 +94,49 @@ function keyDownHandler(e) {
 }
 
 function draw() {
-  if (canvas.getContext){
+  if (canvas.getContext) {
     ctx.beginPath();
-    ctx.clearRect(0,0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawTerrain();
+    // XXX:
     drawTerrain();
     drawBall();
     if (spacebar) {
       ballJump()
     }
     drawObstacle();
+    // XXX:
     drawObstacle();
     obstacleMove();
-      scoreText();
-    score++
-    window.requestAnimationFrame(draw);
+    scoreText();
   }
-
+  window.requestAnimationFrame(draw)
 }
 
-function scoreText(){
-  console.log(checkCollision(obstacle))
+function checkCollision() {
+  var collided = (((ball.ballx + (ball.ballRadius) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
+  if (collided && obstacle.obstacleStart) {
+    obstacle.obstacleStart = false
+    alert('you suck')
+    window.cancelAnimationFrame(draw)
+  }
+}
+
+function scoreText() {
+  checkCollision()
+  if (obstacle.obstacleStart){
+  score++
+  ctx.font = '20px Ariel serif';
+  ctx.fillStyle = 'Black';
+  ctx.fillText('Score: ' + score, 475, 30);
+  }
   ctx.font = '20px Ariel serif';
   ctx.fillStyle = 'Black';
   ctx.fillText('Score: ' + score, 475, 30);
 }
 
-function checkCollision(obstacle) {
-  var collided = (((ball.ballx + (ball.ballRadius) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
-    return collided
-  }
-
-function stopGame() {
-  if (collided = true) {
-    window.requestAnimationFrame().stop
-  }
-}
-
 $(document).keydown(keyDownHandler)
+
 
 
 
