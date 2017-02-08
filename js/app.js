@@ -23,13 +23,14 @@ var myObstacles = [];
 
 var obstacle = {
   obstaclex: 650,
-  obstacley: 310,
+  obstacley: 290,
   obstaclevx: 4,
   obstaclevy: 0,
-  obstaclew: 20,
-  obstacleh: 20,
+  obstaclew: 40,
+  obstacleh: 40,
   obstacleColor: 'red'
 }
+
 
 var ball = {
   ballx: 100,
@@ -43,7 +44,7 @@ var ball = {
 var terrain = {
   terrainx: 600,
   terrainy: 330,
-  terrainColor: 'red'
+  terrainColor: 'blue'
 }
 
 function drawObstacle() {
@@ -51,7 +52,7 @@ function drawObstacle() {
   ctx.fillRect(obstacle.obstaclex, obstacle.obstacley, obstacle.obstaclew, obstacle.obstacleh);
   ctx.fillStyle = obstacle.obstacleColor;
   ctx.fill();
-}
+  }
 
 function drawBall() {
     ctx.beginPath();
@@ -95,16 +96,19 @@ function draw() {
     ctx.beginPath();
     ctx.clearRect(0,0, canvas.width, canvas.height);
     drawTerrain();
+    drawTerrain();
     drawBall();
-    drawObstacle();
     if (spacebar) {
       ballJump()
     }
+    drawObstacle();
+    drawObstacle();
     obstacleMove();
+      scoreText();
     score++
-    raf = window.requestAnimationFrame(draw);
+    window.requestAnimationFrame(draw);
   }
-  scoreText();
+
 }
 
 function scoreText(){
@@ -115,13 +119,15 @@ function scoreText(){
 }
 
 function checkCollision(obstacle) {
-  var collided = (((ball.ballx + (ball.ballRadius*2) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius*2) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
+  var collided = (((ball.ballx + (ball.ballRadius) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
     return collided
   }
 
-  //is the x+width of the ball greater than the x of the other object.
-  //checking two things for the x side.
-
+function stopGame() {
+  if (collided = true) {
+    window.requestAnimationFrame().stop
+  }
+}
 
 $(document).keydown(keyDownHandler)
 
