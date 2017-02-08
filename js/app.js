@@ -1,15 +1,6 @@
 console.log('connected')
-
-//GLOBAL VARIABLES//
-///////////////////
-
-
-
 //WELCOME PAGE//
 //////////////
-
-//jQuery/////
-//add directions to the div//
 $('#home-page-directions').append('<p id="directions">Watch out for the blocks that come towards you! Make sure keep the ball alive by jumping over the blocks with the space bar! #ballislife</p>')
 
 // $('button').on('click', function(){
@@ -24,19 +15,20 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 
 //GAMEPLAY PAGE//
 ////////////////
-//canvas algorithms
-////gravity, objects, timers, live score
 var canvas = document.getElementById('canvasScreen');
 var ctx = canvas.getContext('2d');
 var score = 0;
 var spacebar = false;
+var myObstacles = [];
 
 var obstacle = {
-  obstaclex: 50,
-  obstacley: 50,
-  obstaclevx: 3,
+  obstaclex: 650,
+  obstacley: 280,
+  obstaclevx: 4,
   obstaclevy: 0,
-  obstacleColor: 'blue'
+  obstaclew: 35,
+  obstacleh: 50,
+  obstacleColor: 'red'
 }
 
 var ball = {
@@ -51,12 +43,12 @@ var ball = {
 var terrain = {
   terrainx: 600,
   terrainy: 330,
-  terrainColor: '#0000ff'
+  terrainColor: 'blue'
 }
 
 function drawObstacle() {
   ctx.beginPath();
-  ctx.fillRect(540, 280, obstacle.obstaclex, obstacle.obstacley);
+  ctx.fillRect(obstacle.obstaclex, obstacle.obstacley, obstacle.obstaclew, obstacle.obstacleh);
   ctx.fillStyle = obstacle.obstacleColor;
   ctx.fill();
 }
@@ -64,17 +56,22 @@ function drawObstacle() {
 function drawBall() {
     ctx.beginPath();
     ctx.arc(ball.ballx, ball.bally, ball.ballRadius, 0, Math.PI * 2, true);
-    ctx.closePath();
     ctx.fillStyle = ball.ballColor;
+    ctx.closePath();
     ctx.fill();
   }
 
 function drawTerrain() {
   ctx.beginPath();
   ctx.fillRect(0, 330, terrain.terrainx, terrain.terrainy);
-  ctx.closePath();
   ctx.fillStyle = terrain.terrainColor;
+  ctx.closePath();
   ctx.fill();
+}
+
+function obstacleMove() {
+  obstacle.obstaclex + obstacle.obstaclevx > 0
+  obstacle.obstaclex -= obstacle.obstaclevx
 }
 
 function ballJump() {
@@ -93,12 +90,6 @@ function keyDownHandler(e) {
   }
 }
 
-// function keyUpHandler(e) {
-//   if (e.keyCode == 32) {
-//     spacebar = false
-//   }
-// }
-
 function draw() {
   if (canvas.getContext){
     ctx.beginPath();
@@ -108,21 +99,12 @@ function draw() {
     drawObstacle();
     if (spacebar) {
       ballJump()
-
-      // spacebar = false
     }
-
-//get the draw function to completely animate the balljump as long as it's within it's limits
-
-    // obstacle.obstaclex += obstacle.obstaclevx;
-
-    // if (obstacle.obstaclex + obstacle.obstaclevx > 250 || obstacle.obstaclex + obstacle.obstaclevx < 30) {
-    //   obstacle.obstaclevx = -obstacle.obstaclevx
-    // }
-  score++
-  raf = window.requestAnimationFrame(draw);
+    obstacleMove();
+    score++
+    raf = window.requestAnimationFrame(draw);
   }
-scoreText();
+  scoreText();
 }
 
 function scoreText(){
@@ -131,29 +113,13 @@ function scoreText(){
   ctx.fillText('Score: ' + score, 475, 30);
 }
 
+function crash() {
+
+}
+
+
 $(document).keydown(keyDownHandler)
-//JUMP CODE?//
-/////////////
 
-
-
-// var keys = {};
-// var keyCodes = {
-//   32: 'space'
-// }
-// for (var kc in keyCodes) {
-//   keys[keyCodes[kc]] = false;
-// }
-// window.onkeydown = function(event) {
-//   if (keyCodes.hasOwnProperty(event.keyCode)) {
-//     keys[keyCodes[event.keyCode]] = true;
-//   }
-// }
-// window.onkeyup = function(event) {
-//   if (keyCodes.hasOwnProperty(event.keyCode)) {
-//     keys[keyCodes[event.keyCode]] = false;
-//   }
-// }
 
 
 // background colors?
