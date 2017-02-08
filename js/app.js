@@ -23,11 +23,11 @@ var myObstacles = [];
 
 var obstacle = {
   obstaclex: 650,
-  obstacley: 280,
+  obstacley: 310,
   obstaclevx: 4,
   obstaclevy: 0,
-  obstaclew: 35,
-  obstacleh: 50,
+  obstaclew: 20,
+  obstacleh: 20,
   obstacleColor: 'red'
 }
 
@@ -37,13 +37,13 @@ var ball = {
   ballvx: 0,
   ballvy: -5,
   ballRadius: 30,
-  ballColor: 'orange'
+  ballColor:'orange'
 }
 
 var terrain = {
   terrainx: 600,
   terrainy: 330,
-  terrainColor: 'blue'
+  terrainColor: 'red'
 }
 
 function drawObstacle() {
@@ -108,14 +108,19 @@ function draw() {
 }
 
 function scoreText(){
+  console.log(checkCollision(obstacle))
   ctx.font = '20px Ariel serif';
   ctx.fillStyle = 'Black';
   ctx.fillText('Score: ' + score, 475, 30);
 }
 
-function crash() {
+function checkCollision(obstacle) {
+  var collided = (((ball.ballx + (ball.ballRadius*2) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius*2) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
+    return collided
+  }
 
-}
+  //is the x+width of the ball greater than the x of the other object.
+  //checking two things for the x side.
 
 
 $(document).keydown(keyDownHandler)
