@@ -29,13 +29,14 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 var canvas = document.getElementById('canvasScreen');
 var ctx = canvas.getContext('2d');
 var score = 0;
+var spacebar = false;
 
 var obstacle = {
   obstaclex: 50,
   obstacley: 50,
   obstaclevx: 3,
   obstaclevy: 0,
-  obstacleColor: 'blue',
+  obstacleColor: 'blue'
 }
 
 var ball = {
@@ -44,13 +45,13 @@ var ball = {
   ballvx: 0,
   ballvy: -5,
   ballRadius: 30,
-  ballColor: 'orange',
+  ballColor: 'orange'
 }
 
 var terrain = {
   terrainx: 600,
   terrainy: 330,
-  terrainColor: '#0000ff',
+  terrainColor: '#0000ff'
 }
 
 function drawObstacle() {
@@ -95,8 +96,6 @@ function keyUpHandler(e) {
   }
 }
 
-var spacebar = false
-
 function draw() {
   if (canvas.getContext){
     ctx.beginPath();
@@ -106,7 +105,8 @@ function draw() {
     drawObstacle();
     if (spacebar) {
       ballJump()
-      spacebar = false
+
+      // spacebar = false
     }
 
 //get the draw function to completely animate the balljump as long as it's within it's limits
