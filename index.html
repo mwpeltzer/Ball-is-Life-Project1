@@ -1,59 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Ball Is Life</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-  </head>
-  <body onload="draw();">
-<!--create div for the title  -->
-<div id="title">
-  <h1>BALL IS LIFE</h1>
-</div>
-<!-- create a div that will encompass the home page -->
-<!-- create div for the directions -->
-<!-- create a div for name input -->
-<!-- creat a div for the button to begin -->
-<div id="home-page-container" class="home-page">
-  <div id="home-page-directions" class="home-page"></div>
-  <div id="home-page-name-form" class="home-page">
-      <input type="text" placeholder="Name">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ball Is Life</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="title">
+    <h1>BALL IS LIFE</h1>
+  </div>
+  <div id="home-page-container" class="home-page">
+    <div id="home-page-directions" class="home-page"></div>
+    <div id="home-page-name-form" class="home-page">
+      <input placeholder="Name" id="name-input">
+      <p id="player-name"></p>
       <div id="home-page-begin-button" class="home-page">
-        <!-- <input type="button" value="BEGIN"> -->
-        <button type="button" name="button" class="home-page" id="beginButton">BEGIN</button>
+        <button class="home-page" id="beginButton">BALL UP</button>
       </div>
+    </div>
+  </div>
+  <div class="gameplay-page">
+    <div id="game-area">
+      <canvas id="canvasScreen" width="600" height="400"></canvas>
+    </div>
+  </div>
+  <div id="scoreBoxContainer">
+    <p id="scoreBox">Previous Score: <span id="score"></span> </p>
+  </div>
+  <div class="loserPage" id="loserContainer">
+    <div class="loserPage" id="loserContent">
+      <p>Oh No! You got crossed up :( I guess ball isn't life for you...
+        <div>Score: <span id="scores"></span></div>
+        <br>
+        <div id=retryButton>Retry</div>
+      </p>
+    </div>
   </div>
 
-</div>
-<!-- create div for gameplay page -->
-<div class="gameplay-page">
-  <div id="game-area">
-    <canvas id="canvasScreen" width="600" height="400"></canvas>
-  </div>
-</div>
-<!-- create a div for the recent scores box -->
-<div id="scoreBoxContainer">
-  <p id="scoreBox">Previous Score: <span id="score"></span> </p>
-</div>
+  <!-- create a div that will list your recent score -->
+  <!-- create a div for button to start again -->
+  <!-- create a div for a button to reset scores and go back to home page  -->
 
-<!-- create a div for "loser" modal -->
+</body>
+<script type="text/javascript" src="js/app.js"></script>
 
-<div class="loserPage" id="loserContainer">
-  <div class="loserPage" id="loserContent"><p>Oh No! You got crossed up :( I guess ball isn't life for you...
-    <div>Score: <span id="scores"></span></div>
-    <br>
-    <div id=retryButton>Retry</div></p>
-  </div>
-</div>
-
-<!-- create a div that will list your recent score -->
-<!-- create a div for button to start again -->
-<!-- create a div for a button to reset scores and go back to home page  -->
-
-  </body>
-  <script type="text/javascript" src="js/app.js"></script>
 </html>

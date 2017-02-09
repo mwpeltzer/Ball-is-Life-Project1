@@ -32,3 +32,5 @@ I will be using HTML, CSS, JavaScript, jQuery, and canvas.
 The MVP for my game will be a ball that a player can manipulate with a keypress to have it jump. Another aspect will be a 'block' that moves from right to left towards the player. If the 'block' and the player make contact the game will stop. 
 
 ###Unsolved Problems
+<li> Better collision with the ball and obstacle
+<li> 

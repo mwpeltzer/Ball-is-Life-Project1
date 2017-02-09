@@ -4,7 +4,14 @@ console.log('connected')
 $('#home-page-directions').append('<p id="directions">Watch out for the blocks that come towards you! Make sure keep the ball alive by jumping over the blocks with the space bar! #ballislife</p>')
 
 $('#beginButton').on('click', function(){
-    beginGame()
+    if ($('#name-input').val() != '') {
+      var newName = $('#name-input').val()
+      $('#player-name').html('Welcome baller ' + newName)
+      $('#name-input').val('')
+      $('input').remove()
+      $('button').remove()
+      beginGame()
+    }
 })
 
 //add form to the div that recieves name input//
@@ -14,8 +21,6 @@ $('#beginButton').on('click', function(){
 
 //GAMEPLAY PAGE//
 ////////////////
-
-
 function beginGame() {
   $(document).keydown(keyDownHandler)
   setInterval(function() {
@@ -27,6 +32,7 @@ function beginGame() {
   var score = 0;
   var spacebar = false;
   var obstacleArray = [];
+
 
   //Obstacle constructor//
   function Obstacle(xcord) {
@@ -121,6 +127,7 @@ function beginGame() {
   }
 
   //Canvas drawing function//
+
   function draw() {
     if (canvas.getContext) {
       ctx.beginPath();
@@ -128,11 +135,11 @@ function beginGame() {
       drawTerrain();
       // XXX:
       drawTerrain();
-      score++
       ctx.font = '20px Ariel serif';
       ctx.fillStyle = 'Black';
       ctx.fillText('Score: ' + score, 475, 30);
       drawBall();
+      score++;
       if (spacebar) {
         ballJump()
       }
@@ -159,7 +166,7 @@ function beginGame() {
     var collided = (((ball.ballx + (ball.ballRadius - 5) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius - 5) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
     if (collided && obstacle.obstacleStart) {
       obstacle.obstacleStart = false
-      $('.loserPage').css('display', 'inline-block')
+      $('.loserPage').css('display', 'block')
       $('#scores, #score').text(score)
       obstacleArray = []
       $('#retryButton').on('click', function() {
@@ -176,14 +183,9 @@ function beginGame() {
     randomObstacle()
     obstacleCreate()
     draw()
-
   }
 }
+
 //GAME OVER PAGE//
 /////////////////
 //once a player hits an object initiate this page.
-
-
-//show title 'loser!' in the div
-//show score that was obtained
-//show button that will reset the game. Upon click it will reset the canvas to begin position(eric talked about this) and add the score into the list of past sores div
