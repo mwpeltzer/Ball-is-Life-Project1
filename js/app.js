@@ -18,6 +18,7 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 
 $(document).keydown(keyDownHandler)
 setInterval(function() {draw(), update()}, 20)
+//!!THE BELOW LINE WILL NOT WORK USING JQUERY!!//
 var canvas = document.getElementById('canvasScreen');
 var ctx = canvas.getContext('2d');
 var score = 0;
@@ -155,8 +156,10 @@ function checkCollision(obstacle) {
   var collided = (((ball.ballx + (ball.ballRadius-5) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius-5) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
   if (collided && obstacle.obstacleStart) {
     obstacle.obstacleStart = false
+    $('.loserPage').css('display', 'inline-block')
+    $('#loserContent').append('Score ' + score)
     reset()
-  }
+    }
 }
 
 //Canvas reset//
@@ -167,18 +170,11 @@ function reset() {
   obstacleCreate()
   draw()
 }
-
-
-
 //GAME OVER PAGE//
 /////////////////
-// function gameOverModalOpen() {
-//   var loser-page = $('.loser-page').
-//   var span = $('#retry')
-// }
-
-
 //once a player hits an object initiate this page.
+
+
 //show title 'loser!' in the div
 //show score that was obtained
 //show button that will reset the game. Upon click it will reset the canvas to begin position(eric talked about this) and add the score into the list of past sores div

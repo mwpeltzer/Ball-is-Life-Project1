@@ -1,11 +1,13 @@
-# BALL IS LIFE
+#BALL IS LIFE
 
 
 ![WireFrame](./assets/Ball-is-life-wireframe.JPG)
 
-Trello Link:
+#####Trello Link:
 https://trello.com/b/iO4Hz6rx/project-1-ball-is-life
 
+#####Installation Instructions: 
+Clone the repo and open the index in your browser. 
 
 ###Introduction
 
@@ -22,9 +24,11 @@ The longer you last, the higher your score will be. If the player makes contact 
 
 ###Technologies Used
 
-I will be using the languages that I have learned so far. HTML, CSS, JavaScript, jQuery, and possibly P5. 
+I will be using HTML, CSS, JavaScript, jQuery, and canvas. 
 
 
 ###MVP
 
 The MVP for my game will be a ball that a player can manipulate with a keypress to have it jump. Another aspect will be a 'block' that moves from right to left towards the player. If the 'block' and the player make contact the game will stop. 
+
+###Unsolved Problems
