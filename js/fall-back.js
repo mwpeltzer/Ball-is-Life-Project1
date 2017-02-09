@@ -20,16 +20,11 @@ var canvas = document.getElementById('canvasScreen');
 var ctx = canvas.getContext('2d');
 var score = 0;
 var spacebar = false;
-var fireObstacle = [];
+var newObstacle = new Obstacle()
+var newObstacle2 = new Obstacle
 
-for (i=0; i < 10; i++){
-  var newObstacle = new Obstacle(650+i*200)
-    fireObstacle.push(newObstacle)
-}
-console.log(fireObstacle)
-
-function Obstacle(xcord) {
-  this.obstaclex = xcord;
+function Obstacle() {
+  this.obstaclex = 650;
   this.obstacley = 290;
   this.obstaclevx = 5;
   this.obstaclevy = 0;
@@ -61,6 +56,15 @@ var terrain = {
   terrainy: 330,
   terrainColor: 'blue'
 }
+
+// function drawObstacle() {
+//   if (obstacle.obstacleStart){
+//   ctx.beginPath();
+//   ctx.fillRect(obstacle.obstaclex, obstacle.obstacley, obstacle.obstaclew, obstacle.obstacleh);
+//   ctx.fillStyle = obstacle.obstacleColor;
+//   ctx.fill();
+//   }
+// }
 
 function drawBall() {
   ctx.beginPath();
@@ -109,20 +113,17 @@ function draw() {
     drawBall();
     if (spacebar) {
       ballJump()
-    }
+
+
+    newObstacle.drawObstacle()
+    obstacleMove(newObstacle);
+    scoreText(newObstacle);
+    // XXX:
+    // drawObstacle();
+
   }
-  // window.requestAnimationFrame(draw)
+  window.requestAnimationFrame(draw)
 }
-
-function update() {
-  for (i=0; i < fireObstacle.length; i++){
-    fireObstacle[i].drawObstacle()
-    obstacleMove(fireObstacle[i]);
-    scoreText(fireObstacle[i]);
-  }
-}
-
-
 
 
 
@@ -131,14 +132,12 @@ function checkCollision(obstacle) {
   if (collided && obstacle.obstacleStart) {
     obstacle.obstacleStart = false
     alert('you suck')
-    // window.cancelAnimationFrame(draw)
+    window.cancelAnimationFrame(draw)
   }
 }
 
 function scoreText(obstacle) {
-  for (i=0; i<fireObstacle.length; i++){
-  checkCollision(fireObstacle[i])
-    }
+  checkCollision(newObstacle)
   if (obstacle.obstacleStart){
   score++
   ctx.font = '20px Ariel serif';
@@ -151,7 +150,7 @@ function scoreText(obstacle) {
 }
 
 $(document).keydown(keyDownHandler)
-setInterval(function() {draw(), update()}, 20)
+
 
 
 
