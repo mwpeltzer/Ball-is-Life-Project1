@@ -20,13 +20,21 @@ var canvas = document.getElementById('canvasScreen');
 var ctx = canvas.getContext('2d');
 var score = 0;
 var spacebar = false;
-var fireObstacle = [];
+var obstacleArray = [];
 
-for (i=0; i < 10; i++){
-  var newObstacle = new Obstacle(650+i*200)
-    fireObstacle.push(newObstacle)
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
-console.log(fireObstacle)
+
+function randomObstacle(){
+for (i = 0; i < 100; i++) {
+  var newObstacle = new Obstacle(650 + i * getRandomInt(350, 450))
+  obstacleArray.push(newObstacle)
+  }
+}
+randomObstacle();
 
 function Obstacle(xcord) {
   this.obstaclex = xcord;
@@ -38,11 +46,11 @@ function Obstacle(xcord) {
   this.obstacleColor = 'red';
   this.obstacleStart = true;
   this.drawObstacle = function() {
-    if (this.obstacleStart){
-    ctx.beginPath();
-    ctx.fillRect(this.obstaclex, this.obstacley, this.obstaclew, this.obstacleh);
-    ctx.fillStyle = this.obstacleColor;
-    ctx.fill();
+    if (this.obstacleStart) {
+      ctx.beginPath();
+      ctx.fillRect(this.obstaclex, this.obstacley, this.obstaclew, this.obstacleh);
+      ctx.fillStyle = this.obstacleColor;
+      ctx.fill();
     }
   }
 }
@@ -106,6 +114,10 @@ function draw() {
     drawTerrain();
     // XXX:
     drawTerrain();
+    score++
+    ctx.font = '20px Ariel serif';
+    ctx.fillStyle = 'Black';
+    ctx.fillText('Score: ' + score, 475, 30);
     drawBall();
     if (spacebar) {
       ballJump()
@@ -115,43 +127,41 @@ function draw() {
 }
 
 function update() {
-  for (i=0; i < fireObstacle.length; i++){
-    fireObstacle[i].drawObstacle()
-    obstacleMove(fireObstacle[i]);
-    scoreText(fireObstacle[i]);
+  obstacleCreate()
+  for (i = 0; i < obstacleArray.length; i++) {
+    obstacleMove(obstacleArray[i]);
+    checkCollision(obstacleArray[i])
   }
 }
 
-
-
-
+function obstacleCreate() {
+  for (i = 0; i < obstacleArray.length; i++) {
+    obstacleArray[i].drawObstacle()
+  }
+}
 
 function checkCollision(obstacle) {
-  var collided = (((ball.ballx + (ball.ballRadius) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
+  var collided = (((ball.ballx + (ball.ballRadius-5) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius-5) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
   if (collided && obstacle.obstacleStart) {
     obstacle.obstacleStart = false
-    alert('you suck')
+    alert("I guess ball isn't life for you...")
+    reset()
     // window.cancelAnimationFrame(draw)
   }
 }
 
-function scoreText(obstacle) {
-  for (i=0; i<fireObstacle.length; i++){
-  checkCollision(fireObstacle[i])
-    }
-  if (obstacle.obstacleStart){
-  score++
-  ctx.font = '20px Ariel serif';
-  ctx.fillStyle = 'Black';
-  ctx.fillText('Score: ' + score, 475, 30);
-  }
-  ctx.font = '20px Ariel serif';
-  ctx.fillStyle = 'Black';
-  ctx.fillText('Score: ' + score, 475, 30);
+function reset() {
+  score = 0
+  obstacleArray = []
+  randomObstacle()
+  obstacleCreate()
+  draw()
 }
 
 $(document).keydown(keyDownHandler)
-setInterval(function() {draw(), update()}, 20)
+setInterval(function() {
+  draw(), update()
+}, 20)
 
 
 
