@@ -157,10 +157,13 @@ function checkCollision(obstacle) {
   if (collided && obstacle.obstacleStart) {
     obstacle.obstacleStart = false
     $('.loserPage').css('display', 'inline-block')
-    $('#loserContent').append('Score ' + score)
+    $('#scores, #score').text(score)
     obstacleArray = []
-    
-    }
+    $('#retryButton').on('click', function() {
+      $('.loserPage').css('display', 'none')
+      reset()
+    })
+  }
 }
 
 //Canvas reset//
@@ -170,6 +173,7 @@ function reset() {
   randomObstacle()
   obstacleCreate()
   draw()
+
 }
 //GAME OVER PAGE//
 /////////////////
