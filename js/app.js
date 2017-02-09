@@ -158,7 +158,8 @@ function checkCollision(obstacle) {
     obstacle.obstacleStart = false
     $('.loserPage').css('display', 'inline-block')
     $('#loserContent').append('Score ' + score)
-    reset()
+    obstacleArray = []
+    
     }
 }
 
