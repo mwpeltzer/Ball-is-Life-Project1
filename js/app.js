@@ -16,26 +16,15 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 //GAMEPLAY PAGE//
 ////////////////
 
+$(document).keydown(keyDownHandler)
+setInterval(function() {draw(), update()}, 20)
 var canvas = document.getElementById('canvasScreen');
 var ctx = canvas.getContext('2d');
 var score = 0;
 var spacebar = false;
 var obstacleArray = [];
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function randomObstacle(){
-for (i = 0; i < 100; i++) {
-  var newObstacle = new Obstacle(650 + i * getRandomInt(350, 450))
-  obstacleArray.push(newObstacle)
-  }
-}
-randomObstacle();
-
+//Obstacle constructor//
 function Obstacle(xcord) {
   this.obstaclex = xcord;
   this.obstacley = 290;
@@ -55,6 +44,7 @@ function Obstacle(xcord) {
   }
 }
 
+//Object variables//
 var ball = {
   ballx: 100,
   bally: 300,
@@ -70,6 +60,25 @@ var terrain = {
   terrainColor: 'blue'
 }
 
+//function logic//
+
+////Obstacle loops////
+function randomObstacle(){
+  for (i = 0; i < 100; i++) {
+  var newObstacle = new Obstacle(650 + i * getRandomInt(350, 450))
+  obstacleArray.push(newObstacle)
+  }
+}
+
+randomObstacle();
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+//Canvas objects//
 function drawBall() {
   ctx.beginPath();
   ctx.arc(ball.ballx, ball.bally, ball.ballRadius, 0, Math.PI * 2, true);
@@ -91,6 +100,7 @@ function obstacleMove(obstacle) {
   obstacle.obstaclex -= obstacle.obstaclevx
 }
 
+//Object movement logic//
 function ballJump() {
   if (ball.bally + ball.ballvy > 305) {
     ball.ballvy = -ball.ballvy
@@ -107,6 +117,7 @@ function keyDownHandler(e) {
   }
 }
 
+//Canvas drawing function//
 function draw() {
   if (canvas.getContext) {
     ctx.beginPath();
@@ -140,16 +151,16 @@ function obstacleCreate() {
   }
 }
 
+//Canvas collision detection//
 function checkCollision(obstacle) {
   var collided = (((ball.ballx + (ball.ballRadius-5) > obstacle.obstaclex) && (obstacle.obstaclex + obstacle.obstaclew > ball.ballx)) && (((ball.ballRadius-5) + ball.bally > obstacle.obstacley) && (obstacle.obstacleh + obstacle.obstacley > ball.bally)))
   if (collided && obstacle.obstacleStart) {
     obstacle.obstacleStart = false
-    alert("I guess ball isn't life for you...")
     reset()
-    // window.cancelAnimationFrame(draw)
   }
 }
 
+//Canvas reset//
 function reset() {
   score = 0
   obstacleArray = []
@@ -158,21 +169,16 @@ function reset() {
   draw()
 }
 
-$(document).keydown(keyDownHandler)
-setInterval(function() {
-  draw(), update()
-}, 20)
-
-
-
-// background colors?
-// function canvasGradient() {
-//   var linearGradient = ctx.createLinearGradient(0, 0, 150, 150)
-// }
 
 
 //GAME OVER PAGE//
 /////////////////
+// function gameOverModalOpen() {
+//   var loser-page = $('.loser-page').
+//   var span = $('#retry')
+// }
+
+
 //once a player hits an object initiate this page.
 //show title 'loser!' in the div
 //show score that was obtained

@@ -3,14 +3,6 @@
   margin: 0 auto;
 }
 
-body {
-  /*background-color: black;*/
-}
-
-h1 {
-
-}
-
 input, button {
   color: black;
   text-align: left;
@@ -32,4 +24,37 @@ canvas {
 
 #scores {
 
+}
+
+.loser-page {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0, 0.4);
+}
+
+#loser-content {
+  background-color: #fefefe
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid *888;
+  width: 80%;
+}
+
+#retry-button {
+  color: #aaa
+  float: right;
+  font-size: 28px;
+}
+
+#retry-button:hover,
+#retry-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
