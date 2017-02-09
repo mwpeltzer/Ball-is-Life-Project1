@@ -69,7 +69,6 @@ function randomObstacle(){
   obstacleArray.push(newObstacle)
   }
 }
-
 randomObstacle();
 
 function getRandomInt(min, max) {
