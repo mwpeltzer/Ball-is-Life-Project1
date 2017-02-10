@@ -66,8 +66,6 @@ function beginGame() {
     terrainColor: 'gray'
   }
 
-  //function logic//
-
   ////Obstacle loops////
   function randomObstacle() {
     for (i = 0; i < 1000; i++) {
@@ -129,7 +127,7 @@ function beginGame() {
       ctx.beginPath();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawTerrain();
-      // XXX:
+      // putting it twice makes the color work for some reason//
       drawTerrain();
       ctx.font = '20px Ariel serif';
       ctx.fillStyle = 'Black';
@@ -140,7 +138,6 @@ function beginGame() {
         ballJump()
       }
     }
-    // window.requestAnimationFrame(draw)
   }
 
   function update() {
