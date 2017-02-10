@@ -11,14 +11,14 @@ Clone the repo and open the index in your browser.
 
 ###Introduction
 
-This will be a simple game where the player will be a ball. The ball will have one function of bouncing up and down. The reason for this action is to clear hurdles that come towards the player. 
+Ball is life is a simple game where the player will be a ball. The ball will have one function of bouncing up and down. The reason for this action is to clear hurdles that come towards the player. 
 
 
 ###Approach
 
-The gameplay space will be created using canvas. The visualization of movement for the terrain will be completed using a function that will help me manipulate the x axis to give the allussion of movement along the screen. 
+The gameplay space will be created using canvas. I will create the elements and create movement by modifying their x and y axis. 
 
-I will then add a timout function to create 'blocks' that will randomly show up and move towards the player. The player will then have to time their key press to clear the hurdle. 
+I then add an array to create function to create 'obstacles' that will randomly show up and move towards and move towards the player. The player will then have to time their key press to clear the 'obstacles.' 
 
 The longer you last, the higher your score will be. If the player makes contact with a 'block' the game will end and store there score. You will then have the option to continue gameplay. 
 

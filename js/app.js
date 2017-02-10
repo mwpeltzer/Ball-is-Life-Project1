@@ -23,8 +23,7 @@ function beginGame() {
   setInterval(function() {
     draw(), update()
   }, 20)
-  //!!THE BELOW LINE WILL NOT WORK USING JQUERY!!//
-  var canvas = document.getElementById('canvasScreen');
+  var canvas = $('#canvasScreen')[0];
   var ctx = canvas.getContext('2d');
   var score = 0;
   var spacebar = false;
@@ -58,7 +57,7 @@ function beginGame() {
     ballvx: 0,
     ballvy: -6,
     ballRadius: 30,
-    ballColor: 'blue'
+    ballColor: 'orange'
   }
 
   var terrain = {
