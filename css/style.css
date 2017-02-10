@@ -1,6 +1,12 @@
 * {
   text-align: center;
   margin: 0 auto;
+  font-family: 'Work Sans', sans-serif;
+
+}
+
+body {
+  background-image: url("../assets/hardwood.jpeg");
 }
 
 input, button {
@@ -12,7 +18,15 @@ canvas {
   border: 3px solid black;
   height: 400px;
   width: 600px;
+  background-image: url("../assets/basketball-court.png");
+  image-orientation: center;
 }
+
+#home-page-container {
+  padding: 30px;
+  max-width: 600px;
+}
+
 
 #score-box-container {
   background-color: gray;

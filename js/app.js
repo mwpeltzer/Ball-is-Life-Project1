@@ -58,13 +58,13 @@ function beginGame() {
     ballvx: 0,
     ballvy: -6,
     ballRadius: 30,
-    ballColor: 'orange'
+    ballColor: 'blue'
   }
 
   var terrain = {
     terrainx: 600,
     terrainy: 330,
-    terrainColor: 'blue'
+    terrainColor: 'gray'
   }
 
   //function logic//
