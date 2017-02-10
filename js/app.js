@@ -6,18 +6,15 @@ $('#home-page-directions').append('<p id="directions">Watch out for the blocks t
 $('#beginButton').on('click', function(){
     if ($('#name-input').val() != '') {
       var newName = $('#name-input').val()
-      $('#player-name').html('Welcome baller ' + newName)
+      $('#player-name').html('Welcome, ' + newName)
       $('#name-input').val('')
-      $('input').remove()
-      $('button').remove()
+      $('input').eq(0).remove()
+      $('button').eq(0).remove()
       beginGame()
+    } else {
+      alert('enter name to begin')
     }
 })
-
-//add form to the div that recieves name input//
-//add click listener to the begin button. Once button is clicked remove directions and su bmit name form and relocate name to gameplay page. This will also add the elements for the gameplay page (includes: canvas, new name box, live score feed, previous scores)//
-
-
 
 //GAMEPLAY PAGE//
 ////////////////
@@ -57,9 +54,9 @@ function beginGame() {
   //Object variables//
   var ball = {
     ballx: 100,
-    bally: 300,
+    bally: 305,
     ballvx: 0,
-    ballvy: -5,
+    ballvy: -6,
     ballRadius: 30,
     ballColor: 'orange'
   }
@@ -74,7 +71,7 @@ function beginGame() {
 
   ////Obstacle loops////
   function randomObstacle() {
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 1000; i++) {
       var newObstacle = new Obstacle(650 + i * getRandomInt(350, 450))
       obstacleArray.push(newObstacle)
     }
@@ -185,7 +182,3 @@ function beginGame() {
     draw()
   }
 }
-
-//GAME OVER PAGE//
-/////////////////
-//once a player hits an object initiate this page.

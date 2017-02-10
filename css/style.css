@@ -31,14 +31,22 @@ canvas {
   width: 100%;
   height: 100%;
   /*overflow: auto;*/
-  background-color: rgba(0,0,0,0.4);
 }
 
 #loserContainer {
-  background-color: #fefefe;
-  padding: 20px;
+  /*padding: 0 auto;*/
   border: 2px solid #888;
-  width: 80%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+#loserContent {
+    color: white;
+    border: 2px solid #000;
+    background-color: grey;
+    width: 70%;
+    height: 180px;
+    margin: 2em 10em 10em 10em;
 }
 
 #retryButton {
