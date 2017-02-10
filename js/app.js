@@ -134,7 +134,7 @@ function beginGame() {
       drawTerrain();
       ctx.font = '20px Ariel serif';
       ctx.fillStyle = 'Black';
-      ctx.fillText('Score: ' + score, 475, 30);
+      ctx.fillText('Score: ' + score, 475, 40);
       drawBall();
       score++;
       if (spacebar) {

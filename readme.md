@@ -34,4 +34,4 @@ The MVP for my game will be a ball that a player can manipulate with a keypress 
 ###Unsolved Problems
 <li> Better collision with the ball and obstacle
 <li> Putting in a min width and max width between obstacles
-<li> Ball start position and bounceback
+<li> Ball start position and little bounceback

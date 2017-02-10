@@ -10,37 +10,39 @@
 </head>
 
 <body>
-  <div id="title">
-    <h1>BALL IS LIFE</h1>
-  </div>
-  <div id="home-page-container" class="home-page">
-    <div id="home-page-directions" class="home-page"></div>
-    <div id="home-page-name-form" class="home-page">
-      <input placeholder="Name" id="name-input">
-      <p id="player-name"></p>
-      <div id="home-page-begin-button" class="home-page">
-        <button class="home-page" id="beginButton">BALL UP</button>
+  <div class="container">
+    <div id="title">
+      <h1>BALL IS LIFE</h1>
+    </div>
+    <div id="home-page-container" class="home-page">
+      <div id="home-page-directions" class="home-page"></div>
+      <div id="home-page-name-form" class="home-page">
+        <input placeholder="Name" id="name-input">
+        <p id="player-name"></p>
+        <div id="home-page-begin-button" class="home-page">
+          <button class="home-page" id="beginButton">BALL UP</button>
+        </div>
+      </div>
+    </div>
+    <div class="gameplay-page">
+      <div id="game-area">
+        <canvas id="canvasScreen" width="600" height="400"></canvas>
+      </div>
+    </div>
+    <div id="scoreBoxContainer">
+      <p id="scoreBox">Previous Score: <span id="score"></span> </p>
+    </div>
+    <div class="loserPage" id="loserContainer">
+      <img src="assets/Michael-Jordan-Crying-Head.png" alt="crying MJ">
+      <div class="loserPage" id="loserContent">
+        <p>You got crossed up. I guess ball isn't life for you...
+          <div>Score: <span id="scores"></span></div>
+          <br>
+          <button id="retryButton">Retry</button>
+        </p>
       </div>
     </div>
   </div>
-  <div class="gameplay-page">
-    <div id="game-area">
-      <canvas id="canvasScreen" width="600" height="400"></canvas>
-    </div>
-  </div>
-  <div id="scoreBoxContainer">
-    <p id="scoreBox">Previous Score: <span id="score"></span> </p>
-  </div>
-  <div class="loserPage" id="loserContainer">
-    <img src="assets/Michael-Jordan-Crying-Head.png" alt="crying MJ">
-    <div class="loserPage" id="loserContent">
-      <p>You got crossed up. I guess ball isn't life for you...
-        <div>Score: <span id="scores"></span></div>
-        <br>
-        <button id="retryButton">Retry</button>
-      </p>
-    </div>
-</div>
 
   <!-- create a div that will list your recent score -->
   <!-- create a div for button to start again -->
