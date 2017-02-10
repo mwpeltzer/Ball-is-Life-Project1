@@ -16,9 +16,9 @@ Ball is life is a simple game where the player will be a ball. The ball will hav
 
 ###Approach
 
-The gameplay space will be created using canvas. I will create the elements and create movement by modifying their x and y axis. 
+I started out with creating my wire frame. I then began to dig into learning canvas and how to create and manipulate elements within it. I drew the elements and created movement by modifying their x and y axis. 
 
-I then add an array to create function to create 'obstacles' that will randomly show up and move towards and move towards the player. The player will then have to time their key press to clear the 'obstacles.' 
+I then added an array and linked it to a loop to create 'obstacles' that will randomly show up and move towards the player. The player will then have to time their key press to clear the 'obstacles.' 
 
 The longer you last, the higher your score will be. If the player makes contact with a 'block' the game will end and store there score. You will then have the option to continue gameplay. 
 
