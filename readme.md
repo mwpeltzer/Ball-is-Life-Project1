@@ -1,7 +1,7 @@
 #BALL IS LIFE
 
 
-![WireFrame](./assets/Ball-is-life-wireframe.JPG)
+<!--![WireFrame](./assets/Ball-is-life-wireframe.JPG)-->
 
 #####Trello Link:
 https://trello.com/b/iO4Hz6rx/project-1-ball-is-life
